@@ -226,8 +226,6 @@ static CGFloat minVolume                    = 0.00001f;
             self.isAdjustingInitialVolume = NO;
         }
 
-        CGFloat difference = fabs(newVolume-oldVolume);
-
         JPSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
         NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
 
