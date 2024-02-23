@@ -206,17 +206,21 @@ static CGFloat minVolume                    = 0.00001f;
             // Probably control center, skip blocks
             return;
         }
-        NSLog(@"Hello, world!");
         
         CGFloat newVolume = [change[NSKeyValueChangeNewKey] floatValue];
         CGFloat oldVolume = [change[NSKeyValueChangeOldKey] floatValue];
+        CGFloat difference = fabs(newVolume-oldVolume);
+
+         NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
 
         if (self.disableSystemVolumeHandler && newVolume == self.initialVolume) {
             // Resetting volume, skip blocks
+            NSLog(@"resetting volume, skip blocks");
             return;
         } else if (self.isAdjustingInitialVolume) {
             if (newVolume == maxVolume || newVolume == minVolume) {
                 // Sometimes when setting initial volume during setup the callback is triggered incorrectly
+                NSLog(@"Sometimes when setting initial volume during setup the callback is triggered incorrectly");
                 return;
             }
             self.isAdjustingInitialVolume = NO;
