@@ -216,8 +216,10 @@ static CGFloat minVolume                    = 0.00001f;
         if (self.disableSystemVolumeHandler && newVolume == self.initialVolume) {
             // Resetting volume, skip blocks
             if (newVolume > oldVolume) {
+                NSLog(@"resetting volume, skip blocks triggering up block");
                 if (self.upBlock) self.upBlock();
             } else {
+                NSLog(@"resetting volume, skip blocks triggering down block");
                 if (self.downBlock) self.downBlock();
             }
             NSLog(@"resetting volume, skip blocks");
@@ -232,7 +234,7 @@ static CGFloat minVolume                    = 0.00001f;
         }
 
         JPSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
-        NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
+        //NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
 
         if (_exactJumpsOnly && difference < .062 && (newVolume == 1. || newVolume == 0)) {
             JPSLog(@"Using a non-standard Jump of %f (%f-%f) which is less than the .0625 because a press of the volume button resulted in hitting min or max volume", difference, oldVolume, newVolume);
@@ -243,8 +245,10 @@ static CGFloat minVolume                    = 0.00001f;
         }
         
         if (newVolume > oldVolume) {
+            NSLog(@"Triggering up block normally");
             if (self.upBlock) self.upBlock();
         } else {
+            NSLog(@"Triggering down block normally");
             if (self.downBlock) self.downBlock();
         }
 
