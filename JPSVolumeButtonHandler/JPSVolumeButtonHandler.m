@@ -217,7 +217,7 @@ static CGFloat minVolume                    = 0.00001f;
 
         if (self.disableSystemVolumeHandler && self.reset) {
             // Resetting volume, skip blocks
-
+            self.reset = NO
             /*
             if (newVolume > oldVolume) {
                 NSLog(@"resetting volume, skip blocks triggering up block");
