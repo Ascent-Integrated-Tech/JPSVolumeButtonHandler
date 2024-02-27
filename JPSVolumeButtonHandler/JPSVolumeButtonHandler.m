@@ -214,11 +214,11 @@ static CGFloat minVolume                    = 0.00001f;
         CGFloat difference = fabs(newVolume-oldVolume);
 
         if (self.reset) {
-            NSLog("@Reset");
-            self.reset = NO
+            NSLog(@"Reset");
+            self.reset = NO;
         }
         else {
-            NSLog("@No Reset");
+            NSLog(@"No Reset");
         }
 
          NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
