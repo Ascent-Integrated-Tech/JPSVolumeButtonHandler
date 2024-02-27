@@ -252,13 +252,7 @@ static CGFloat minVolume                    = 0.00001f;
             if (self.upBlock) self.upBlock();
         } else {
             NSLog(@"Triggering down block normally");
-            if (self.downBlock)  {
-                NSLog(@"down block exists");
-                self.downBlock();
-            }
-            else {
-                NSLog(@"down block doenst exists");
-            }
+            if (self.downBlock) self.downBlock();
         }
 
         if (!self.disableSystemVolumeHandler) {
@@ -267,6 +261,7 @@ static CGFloat minVolume                    = 0.00001f;
         }
 
         // Reset volume
+        NSLog(@"resetting initial vol");
         [self setSystemVolume:self.initialVolume];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
