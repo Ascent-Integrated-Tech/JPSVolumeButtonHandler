@@ -271,6 +271,7 @@ static CGFloat minVolume                    = 0.00001f;
 #pragma mark - System Volume
 
 - (void)setSystemVolume:(CGFloat)volume {
+    NSLog(@"resetting initial vol");
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [[MPMusicPlayerController applicationMusicPlayer] setVolume:(float)volume];
