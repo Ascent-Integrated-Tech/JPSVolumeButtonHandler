@@ -16,7 +16,6 @@ static NSString *const sessionVolumeKeyPath = @"outputVolume";
 static void *sessionContext                 = &sessionContext;
 static CGFloat maxVolume                    = 0.99999f;
 static CGFloat minVolume                    = 0.00001f;
-BOOL reset = NO;
 
 @interface JPSVolumeButtonHandler ()
 
@@ -28,6 +27,7 @@ BOOL reset = NO;
 @property (nonatomic, assign) BOOL             disableSystemVolumeHandler;
 @property (nonatomic, assign) BOOL             isAdjustingInitialVolume;
 @property (nonatomic, assign) BOOL             exactJumpsOnly;
+@property (nonatomic, assign) BOOL             reset;
 
 @end
 
@@ -50,6 +50,7 @@ BOOL reset = NO;
         _volumeView.hidden = YES;
 
         _exactJumpsOnly = NO;
+        _reset = NO;
     }
     return self;
 }
@@ -213,8 +214,11 @@ BOOL reset = NO;
         CGFloat difference = fabs(newVolume-oldVolume);
 
         if (self.reset) {
-            NSLog("Reset");
+            NSLog("@Reset");
             self.reset = NO
+        }
+        else {
+            NSLog("@No Reset");
         }
 
          NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
