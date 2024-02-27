@@ -252,7 +252,13 @@ static CGFloat minVolume                    = 0.00001f;
             if (self.upBlock) self.upBlock();
         } else {
             NSLog(@"Triggering down block normally");
-            if (self.downBlock) self.downBlock();
+            if (self.downBlock)  {
+                NSLog(@"down block exists");
+                self.downBlock();
+            }
+            else {
+                NSLog(@"down block doenst exists");
+            }
         }
 
         if (!self.disableSystemVolumeHandler) {
