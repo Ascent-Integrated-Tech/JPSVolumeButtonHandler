@@ -278,7 +278,7 @@ static CGFloat minVolume                    = 0.00001f;
 //#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     for (UIView *view in self.volumeView.subviews) {
         if ([view isKindOfClass:[UISlider class]]) {
-            NSLog(@"found volume slider")
+            NSLog(@"found volume slider");
             UISlider *slider = (UISlider *)view;
             slider.value = volume;
             break;
