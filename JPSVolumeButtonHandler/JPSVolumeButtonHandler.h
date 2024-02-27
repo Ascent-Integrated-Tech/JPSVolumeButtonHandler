@@ -27,6 +27,7 @@ typedef void (^JPSVolumeButtonBlock)(void);
 - (void)startHandler:(BOOL)disableSystemVolumeHandler;
 - (void)stopHandler;
 
+extern BOOL reset;
 // A Function to set exactJumpsOnly.  When set to YES, only volume jumps of .0625 call the code blocks.
 // If it doesn't match, the code blocks are not called and setInitialVolume is called
 - (void)useExactJumpsOnly:(BOOL)enabled;

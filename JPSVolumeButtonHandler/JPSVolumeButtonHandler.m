@@ -16,6 +16,7 @@ static NSString *const sessionVolumeKeyPath = @"outputVolume";
 static void *sessionContext                 = &sessionContext;
 static CGFloat maxVolume                    = 0.99999f;
 static CGFloat minVolume                    = 0.00001f;
+BOOL reset = NO;
 
 @interface JPSVolumeButtonHandler ()
 
@@ -211,6 +212,11 @@ static CGFloat minVolume                    = 0.00001f;
         CGFloat oldVolume = [change[NSKeyValueChangeOldKey] floatValue];
         CGFloat difference = fabs(newVolume-oldVolume);
 
+        if (self.reset) {
+            NSLog("Reset");
+            self.reset = NO
+        }
+
          NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
 
         if (self.disableSystemVolumeHandler && newVolume == self.initialVolume) {
@@ -274,17 +280,11 @@ static CGFloat minVolume                    = 0.00001f;
 
 - (void)setSystemVolume:(CGFloat)volume {
     NSLog(@"resetting initial vol");
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    for (UIView *view in self.volumeView.subviews) {
-        if ([view isKindOfClass:[UISlider class]]) {
-            NSLog(@"found volume slider");
-            UISlider *slider = (UISlider *)view;
-            slider.value = volume;
-            break;
-        }
-    }
-//#pragma clang diagnostic pop
+    self.reset = YES;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [[MPMusicPlayerController applicationMusicPlayer] setVolume:(float)volume];
+#pragma clang diagnostic pop
 }
 
 @end
