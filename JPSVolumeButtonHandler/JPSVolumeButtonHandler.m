@@ -261,7 +261,6 @@ static CGFloat minVolume                    = 0.00001f;
         }
 
         // Reset volume
-        NSLog(@"resetting initial vol");
         [self setSystemVolume:self.initialVolume];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
