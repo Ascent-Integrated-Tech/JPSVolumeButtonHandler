@@ -274,10 +274,16 @@ static CGFloat minVolume                    = 0.00001f;
 
 - (void)setSystemVolume:(CGFloat)volume {
     NSLog(@"resetting initial vol");
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[MPMusicPlayerController applicationMusicPlayer] setVolume:(float)volume];
-#pragma clang diagnostic pop
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    for (UIView *view in self.volumeView.subviews) {
+        if ([view isKindOfClass:[UISlider class]]) {
+            UISlider *slider = (UISlider *)view;
+            slider.value = volume;
+            break;
+        }
+    }
+//#pragma clang diagnostic pop
 }
 
 @end
