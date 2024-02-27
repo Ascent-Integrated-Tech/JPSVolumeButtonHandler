@@ -215,6 +215,8 @@ static CGFloat minVolume                    = 0.00001f;
 
         if (self.disableSystemVolumeHandler && newVolume == self.initialVolume) {
             // Resetting volume, skip blocks
+
+            /*
             if (newVolume > oldVolume) {
                 NSLog(@"resetting volume, skip blocks triggering up block");
                 if (self.upBlock) self.upBlock();
@@ -222,6 +224,7 @@ static CGFloat minVolume                    = 0.00001f;
                 NSLog(@"resetting volume, skip blocks triggering down block");
                 if (self.downBlock) self.downBlock();
             }
+            */
             NSLog(@"resetting volume, skip blocks");
             return;
         } else if (self.isAdjustingInitialVolume) {
