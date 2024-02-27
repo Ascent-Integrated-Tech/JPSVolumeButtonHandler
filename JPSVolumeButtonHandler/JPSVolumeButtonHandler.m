@@ -213,17 +213,9 @@ static CGFloat minVolume                    = 0.00001f;
         CGFloat oldVolume = [change[NSKeyValueChangeOldKey] floatValue];
         CGFloat difference = fabs(newVolume-oldVolume);
 
-        if (self.reset) {
-            NSLog(@"Reset");
-            self.reset = NO;
-        }
-        else {
-            NSLog(@"No Reset");
-        }
-
          NSLog(@"Old Vol:%f New Vol:%f Difference = %f", (double)oldVolume, (double)newVolume, (double) difference);
 
-        if (self.disableSystemVolumeHandler && newVolume == self.initialVolume) {
+        if (self.disableSystemVolumeHandler && self.reset) {
             // Resetting volume, skip blocks
 
             /*
